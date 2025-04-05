@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trash Classifier // B&W Maximalist v3.1 [INFO RICH]</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Optional Font: -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> -->
+</head>
+<body>
+    <div id="animated-background"></div>
+    <div id="scanline-overlay"></div>
+
+    <header class="app-header">
+        <h1 data-text="Klasifikasi Sampah">Klasifikasi Sampah</h1>
+    </header>
+
+    <main class="content-area">
+
+        <!-- API Token Section (Collapsible) -->
+        <section class="token-section collapsible">
+            <button id="token-toggle-btn" class="token-toggle-btn" aria-expanded="false" aria-controls="token-content">
+                [+] KONFIGURASI API TOKEN HUGGING FACE
+            </button>
+            <div id="token-content" class="token-content" hidden>
+                <label for="hf-token-input">API TOKEN ANDA:</label>
+                <input type="password" id="hf-token-input" placeholder="Tempel token 'read' Anda di sini...">
+                <div id="token-tutorial" class="token-tutorial">
+                    <p><strong>Cara Mendapatkan Token:</strong></p>
+                    <ol>
+                        <li>Kunjungi <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">huggingface.co/settings/tokens</a> (login/daftar dulu).</li>
+                        <li>Klik "New token". Nama (mis: TrashApp), role "read". Klik "Generate".</li>
+                        <li><strong>Salin token</strong> (contoh: hf_xxxx...) & tempel di atas.</li>
+                        <li>Token disimpan sementara di browser ini (localStorage).</li>
+                    </ol>
+                    <p class="warning">JANGAN bagikan token Anda secara publik!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Display & Drop Zone -->
+        <div id="drop-zone" class="image-display-wrapper">
+             <div id="image-container-border" class="image-container-border">
+                <div id="image-container" class="image-container">
+                    <!-- Custom Loading Animation Overlay -->
+                    <div id="loading-overlay">
+                        <div class="loader"></div>
+                        <span>MEMPROSES...</span>
+                    </div>
+                    <div id="placeholder-text" class="placeholder-text">SERET & JATUHKAN GAMBAR KE SINI ATAU GUNAKAN TOMBOL UNGGAH</div>
+                    <img id="uploaded-image" alt="Gambar yang diunggah"/>
+                    <div class="image-overlay"></div> <!-- Static overlay -->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modified Results Display -->
+        <div id="results-display" class="results-display">
+             <div class="result-header">
+                <span id="result-icon" class="result-icon"></span>
+                <span id="result-status">STATUS</span>::<span id="result-category">N/A</span> (<span id="result-score">0%</span>)
+            </div>
+            <div id="result-description" class="result-description">
+                 Masukkan token API Anda dan unggah gambar untuk memulai analisis. Jika token sudah ada, silakan unggah gambar.
+            </div>
+             <div class="result-bg-anim"></div>
+        </div>
+    </main>
+
+    <footer class="controls-footer">
+        <div class="control-bar">
+            <button id="upload-btn" class="control-button upload-btn">
+                 [ UNGGAH ▲ ]
+            </button>
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+        <div class="footer-credit">
+             MADE BY ARDEL.YO :: <a href="http://bit.ly/ardelyo" target="_blank" rel="noopener noreferrer">[bit.ly/ardelyo]</a> :: V3.1_MAX_FX
+        </div>
+    </footer>
+
+    <!-- Sound Effects -->
+    <audio id="sfx-click" src="sfx/click.wav" preload="auto"></audio>
+    <audio id="sfx-success" src="sfx/success.wav" preload="auto"></audio>
+    <audio id="sfx-error" src="sfx/error.wav" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
